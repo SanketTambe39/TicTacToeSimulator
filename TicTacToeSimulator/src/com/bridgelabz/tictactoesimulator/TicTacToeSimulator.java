@@ -42,7 +42,7 @@ public class TicTacToeSimulator {
 	/* UC1 */
 	private static String[] createBoard() {
 		for(int i=0;i<board.length;i++) {
-			board[i] = String.valueOf(' ');
+			board[i] = String.valueOf(" ");
 		}
 		return board;
 	}
@@ -176,5 +176,9 @@ public class TicTacToeSimulator {
 		}
 		return null;
 	}
+	
+	/* UC8 */
+	
+	
 	
 }
