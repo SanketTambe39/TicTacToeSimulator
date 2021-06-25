@@ -24,11 +24,17 @@ public class TicTacToeSimulator {
 		System.out.println("Your Blank Gamming Board is here");
 		showBoard();
 		
-		if(tossFirst())
-		{
-			while(checkspace(board))
-			{
-				playerPlace(board,playerChoice);
+		System.out.println("checkwinner :: "+checkWinner());
+		
+			if(tossFirst())
+			{	
+				while(checkWinner() == null) {
+					playerPlace(board,playerChoice);
+			}
+			if (checkWinner().equalsIgnoreCase("draw")) {
+				System.out.println("It's a draw! Thanks for playing.");
+			} else {
+				System.out.println("Congratulations! " + checkWinner()  + "'s have won! Thanks for playing.");
 			}
 		}
 	}
@@ -36,7 +42,7 @@ public class TicTacToeSimulator {
 	/* UC1 */
 	private static String[] createBoard() {
 		for(int i=0;i<board.length;i++) {
-			board[i] = " ";
+			board[i] = String.valueOf(' ');
 		}
 		return board;
 	}
@@ -69,7 +75,7 @@ public class TicTacToeSimulator {
 			System.out.println("Enter where player want to place his symbol :: ");
 			int playerplace = scanner.nextInt()-1;
 			
-			if(board2[playerplace] == " ")
+			if(board2[playerplace].equalsIgnoreCase(" "))
 			{
 				board2[playerplace] = playerchoice;
 				playerplay = false;
@@ -121,6 +127,54 @@ public class TicTacToeSimulator {
 		}
 		return playerPlay;
 	}
+	
+	/* UC7 */
 
+	static String checkWinner() 
+	{
+		String line = null;
+		for (int a = 0; a < 8; a++) 
+		{
+			switch (a) 
+			{
+				case 0:
+					line = board[0] + board[1] + board[2];
+					break;
+				case 1:
+					line = board[3] + board[4] + board[5];
+					break;
+				case 2:
+					line = board[6] + board[7] + board[8];
+					break;
+				case 3:
+					line = board[0] + board[3] + board[6];
+					break;
+				case 4:
+					line = board[1] + board[4] + board[7];
+					break;
+				case 5:
+					line = board[2] + board[5] + board[8];
+					break;
+				case 6:
+					line = board[0] + board[4] + board[8];
+					break;
+				case 7:
+					line = board[2] + board[4] + board[6];
+					break;
+				}
+				if (line.equals("XXX")) {
+					return "X";
+				} else if (line.equals("OOO")) {
+					return "O";
+				}
+			}
+		for (int a = 0; a < 9; a++) {
+			if (Arrays.asList(board).contains(String.valueOf(" "))) {
+				break;
+			}
+			else if (a == 8) return "draw";
+		}
+		return null;
+	}
 	
 }
