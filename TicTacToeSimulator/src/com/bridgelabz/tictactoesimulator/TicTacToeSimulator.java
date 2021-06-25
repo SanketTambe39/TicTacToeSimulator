@@ -24,9 +24,12 @@ public class TicTacToeSimulator {
 		System.out.println("Your Blank Gamming Board is here");
 		showBoard();
 		
-		while(checkspace(board))
+		if(tossFirst())
 		{
-			playerPlace(board,playerChoice);
+			while(checkspace(board))
+			{
+				playerPlace(board,playerChoice);
+			}
 		}
 	}
 	
@@ -96,10 +99,27 @@ public class TicTacToeSimulator {
 		}
 		if(numberOfFreeSpace == 0)
 		{
-			System.out.println("Board is full.");
 			isSpaceOccupied=false;
 		}
 		return isSpaceOccupied;
+	}
+	
+	/* UC6 */
+	private static boolean tossFirst() {
+		int toss = (int)Math.floor(Math.random() *10) % 2 ;
+		int playerOwn = 1;
+		boolean playerPlay;
+		if (toss == playerOwn ) 
+		{
+			playerPlay = true;
+			System.out.println("You Will play First  ");
+		} 
+		else 
+		{
+			playerPlay = false;
+			System.out.println("Computer Will play First ");
+		}
+		return playerPlay;
 	}
 
 	
