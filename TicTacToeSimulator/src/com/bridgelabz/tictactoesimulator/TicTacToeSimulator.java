@@ -21,7 +21,10 @@ public class TicTacToeSimulator {
 		System.out.println("Your Blank Gamming Board is here");
 		showBoard();
 		
-		playerPlace(board,playerchoice);
+		while(checkspace(board))
+		{
+			playerPlace(board,playerchoice);
+		}
 		
 	}
 	
@@ -74,6 +77,26 @@ public class TicTacToeSimulator {
 		}
 		showBoard();
 		
+	}
+	
+	/* UC5 */
+	private static boolean checkspace(char[] board) {
+		
+		boolean isSpaceOccupied = true;
+		int numberOfFreeSpace = 0;
+		
+		for (int index = 1; index < board.length; index++)
+		{
+			if(board[index]== ' ')
+			{
+				numberOfFreeSpace++;
+			}
+		}
+		if(numberOfFreeSpace == 0)
+		{
+			isSpaceOccupied=false;
+		}
+		return isSpaceOccupied;
 	}
 
 }
