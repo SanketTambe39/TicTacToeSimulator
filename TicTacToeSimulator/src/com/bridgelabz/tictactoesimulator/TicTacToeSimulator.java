@@ -4,21 +4,19 @@ import java.util.Scanner;
 
 public class TicTacToeSimulator {
 	
+	
 	public static void main(String[] args) {
 		System.out.println("========= Welcome to Tic Tac Toe Simulator Game =======");
-		char[] board=createBoard();
+		
 		
 		char playerchoice = chooseLetter();
+		char computerchoice = ( playerchoice == 'X' ) ? 'O' : 'X';
 		
-		System.out.println("you choose ::"+playerchoice);
-		if(playerchoice == 'X') {
-			char computerchoice = 'O';
-			System.out.println("Computer Will be :: "+computerchoice);
-		}
-		else {
-			char computerchoice = 'Y';
-			System.out.println("Computer Will be :: "+computerchoice);
-		}
+		System.out.println(playerchoice);
+		System.out.println(computerchoice);
+		
+		System.out.println("Your Blank Gamming Board is here");
+		showBoard();
 	}
 	
 	/* UC1 */
@@ -33,13 +31,21 @@ public class TicTacToeSimulator {
 	private static char chooseLetter() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter your choice X or O ::");
-		
 		char playerturn=scanner.next().toUpperCase().charAt(0);
-		
 		return playerturn;
 	
 	}
+	/* UC# */
 	
-	
+	static void showBoard() {
+		char[] board=createBoard();
+		System.out.println("\t/---|---|---\\");
+		System.out.println("\t| " + board[0] + " | " + board[1] + " | " + board[2] + " |");
+		System.out.println("\t|-----------|");
+		System.out.println("\t| " + board[3] + " | " + board[4] + " | " + board[5] + " |");
+		System.out.println("\t|-----------|");
+		System.out.println("\t| " + board[6] + " | " + board[7] + " | " + board[8] + " |");
+		System.out.println("\t/---|---|---\\");
+	}
 
 }
